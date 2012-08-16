@@ -56,3 +56,30 @@ This repo is intended to provide an example schema, data, and guide for getting 
 	(1 row)
 	
 	
+	# SELECT coalesce(users.data->'sex', 'Unknown'), sum(total(items)) from users, purchases where purchases.user_id = users.id group by users.data->'sex';
+	 coalesce |   sum    
+	----------+----------
+	 Unknown  | 26826.60
+	 F        | 32824.79
+	 M        | 26637.51
+	(3 rows)
+	
+	
+	# SELECT email, sum(total(items)) from users, purchases where purchases.user_id = users.id and users.data->'sex' ='F' group by 1 order by 2 desc;
+	            email             |   sum   
+	------------------------------+---------
+	 Dalton.Junge@yahoo.com       | 6974.65
+	 Kymberly.Junior@aol.com      | 6434.00
+	 Wendie.Emmerich@gmail.com    | 4221.17
+	 Renda.Bonacci@gmail.com      | 4122.44
+	 Victor.Hendon@gmail.com      | 3789.39
+	 Missy.Rollinson@gmail.com    | 2054.77
+	 Nathanial.Mayon@gmail.com    | 1843.26
+	 Hans.Selden@aol.com          | 1499.85
+	 Divina.Dossey@yahoo.com      |  993.73
+	 Mohammad.Monteith@yahoo.com  |  429.99
+	 Evelina.Akey@aol.com         |  229.87
+	 Leonard.Gilpatrick@yahoo.com |  101.93
+	 Rubie.Sisemore@gmail.com     |   89.82
+	 Shari.Rapozo@gmail.com       |   39.92
+	(14 rows)
